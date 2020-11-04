@@ -1,9 +1,11 @@
 # Gin Chaos Monkey - Assault Middleware for Gin :cocktail: :cocktail: :cocktail:
 
+<div align=>
+	<img align="right" width="150px" src="/.github/assets/img/color.png">
+</div> 
 
-<img align="right" width="159px" src="/.github/assets/img/color.png">
 
-<img align="left" width="159px" src="/.github/assets/img/logo.png">
+<br><br>
 
 ## Installation 
 

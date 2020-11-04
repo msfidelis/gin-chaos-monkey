@@ -12,8 +12,8 @@
 - [Gin Web Framework](https://github.com/gin-gonic/gin)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Assault Types](#assault-types).
-  - [Environment Variables Configuration](#environment-variables-configuration)
+  - [Assault types](#assault-types)
+  - [Environment variables configuration](#environment-variables-configuration)
   - [Development](#development)
 
 ## Installation 

@@ -23,8 +23,8 @@ func main() {
 	r := gin.Default()
 
     //Middlewares
-    r.Use(gin.Recovery())
-    r.Use(chaos_monkey.Load())
+        r.Use(gin.Recovery())
+        r.Use(chaos_monkey.Load())
 
 	// Healthcheck
 	r.GET("/healthcheck", healthcheck.Ok)    

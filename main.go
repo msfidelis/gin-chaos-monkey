@@ -1,4 +1,4 @@
-package chaos_monkey
+package main
 
 import (
 	"fmt"
@@ -13,23 +13,23 @@ import (
 
 func Load() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		if isEnabled() && isGonnaAssault() {
-			assaults := getAssaltsEnabled()
+		if IsEnabled() && IsGonnaAssault() {
+			assaults := GetAssaltsEnabled()
 			assault_type := getAssaultType(assaults)
 			assaultAction(assault_type, ctx)
 		}
 	}
 }
 
-func isEnabled() bool {
+func IsEnabled() bool {
 	enabled := os.Getenv("CHAOS_MONKEY_ENABLED")
-	if enabled == "true" || enabled == "" {
+	if enabled == "true" {
 		return true
 	}
 	return false
 }
 
-func getAssaltsEnabled() []string {
+func GetAssaltsEnabled() []string {
 	var enabled []string
 
 	assalt_available := []string{
@@ -41,7 +41,7 @@ func getAssaltsEnabled() []string {
 
 	for i := 0; i < len(assalt_available); i++ {
 		assalt := assalt_available[i]
-		if strings.ToLower(os.Getenv(assalt)) == "true" {
+		if strings.ToLower(os.Getenv(strings.ToUpper(assalt))) == "true" {
 			enabled = append(enabled, assalt)
 		}
 	}
@@ -49,7 +49,7 @@ func getAssaltsEnabled() []string {
 	return enabled
 }
 
-func isGonnaAssault() bool {
+func IsGonnaAssault() bool {
 	rand.Seed(time.Now().Unix())
 	modes := map[string]int{
 		"":         2,
@@ -58,7 +58,7 @@ func isGonnaAssault() bool {
 		"critical": 10,
 	}
 
-	quorum := makeRange(0, modes[os.Getenv("CHAOS_MONKEY_MODE")])
+	quorum := MakeRange(0, modes[os.Getenv("CHAOS_MONKEY_MODE")])
 
 	r := quorum[rand.Intn(len(quorum))]
 	if r == 0 {
@@ -92,7 +92,7 @@ func assaultAction(assault string, ctx *gin.Context) {
 	}
 }
 
-func makeRange(min, max int) []int {
+func MakeRange(min, max int) []int {
 	a := make([]int, max-min+1)
 	for i := range a {
 		a[i] = min + i
@@ -113,7 +113,6 @@ func exceptionAssault(ctx *gin.Context) {
 }
 
 func appKillerAssault(ctx *gin.Context) {
-	fmt.Println("[CHAOS MONKEY] - App Killer Assault")
 	panic("[CHAOS MONKEY] - App Killer Assault")
 }
 

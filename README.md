@@ -22,7 +22,7 @@ import (
 func main() {
 	r := gin.Default()
 
-    //Middlewares
+        //Middlewares
         r.Use(gin.Recovery())
         r.Use(chaos_monkey.Load())
 

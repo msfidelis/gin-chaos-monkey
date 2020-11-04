@@ -1,6 +1,6 @@
-# Gin Chaos Monkey - Assalt Middleware for Gin 
+# Gin Chaos Monkey - Assault Middleware for Gin 
 
-:cocktail: :cocktail: :cocktail: Chaos Monkey assalts middleware for Gin Gonic 
+:cocktail: :cocktail: :cocktail: Chaos Monkey assaults middleware for Gin Gonic 
 
 ## Installation 
 

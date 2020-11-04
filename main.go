@@ -52,7 +52,7 @@ func GetAssaltsEnabled() []string {
 func IsGonnaAssault() bool {
 	rand.Seed(time.Now().Unix())
 	modes := map[string]int{
-		"":         2,
+		"":         100,
 		"soft":     100,
 		"hard":     50,
 		"critical": 10,

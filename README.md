@@ -30,7 +30,7 @@ go get -v github.com/msfidelis/gin-chaos-monkey
 package main
 
 import (
-	chaos_monkey "github.com/mfidelis/gin-chaos-monkey"
+	chaos "github.com/msfidelis/gin-chaos-monkey"
 	"github.com/gin-gonic/gin"
 )
 
@@ -39,7 +39,7 @@ func main() {
 
         //Middlewares
         r.Use(gin.Recovery())
-        r.Use(chaos_monkey.Load())
+        r.Use(chaos.Load())
 
 	// Healthcheck
 	r.GET("/healthcheck", healthcheck.Ok)    

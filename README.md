@@ -1,6 +1,9 @@
-# Gin Chaos Monkey - Assault Middleware for Gin 
+# Gin Chaos Monkey - Assault Middleware for Gin :cocktail: :cocktail: :cocktail:
 
-:cocktail: :cocktail: :cocktail: Chaos Monkey assaults middleware for Gin Gonic 
+
+<img align="right" width="159px" src="/.github/assets/img/color.png">
+
+<img align="left" width="159px" src="/.github/assets/img/logo.png">
 
 ## Installation 
 
@@ -8,6 +11,7 @@
 go get -v github.com/msfidelis/gin-chaos-monkey
 ```
 
+<br><br>
 
 # Usage 
 
@@ -77,3 +81,12 @@ export CHAOS_MONKEY_LATENCY=true
 | CHAOS_MONKEY_EXCEPTION_HTTP_STATUS_CODE   | 5xx                   | 503       |
 | CHAOS_MONKEY_APP_KILLER                   | true/false            | false     |
 | CHAOS_MONKEY_MEMORY                       | true/false            | false     |
+
+
+## Development 
+
+### Running Tests 
+
+```
+go test -v
+```

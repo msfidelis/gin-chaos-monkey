@@ -26,6 +26,8 @@ go get -v github.com/msfidelis/gin-chaos-monkey
 
 # Usage 
 
+## Basic Usage
+
 ```go
 package main
 
@@ -47,6 +49,32 @@ func main() {
 	r.Run()
 }
 ```
+
+## Specific Routes
+
+```golang
+
+package main
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	chaos "github.com/msfidelis/gin-chaos-monkey"
+)
+
+func main() {
+	router := gin.Default()
+
+	//Enable Chaos Monkey in Specific Route
+	router.GET("/healthcheck/chaos", chaos.Load(), healthcheck.Ok)
+
+	router.GET("/healthcheck", healthcheck.Ok)
+
+	router.Run()
+}
+```
+
 # ASSAULT TYPES
 
 

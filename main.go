@@ -56,7 +56,7 @@ func IsGonnaAssault() bool {
 		"":         100,
 		"soft":     100,
 		"hard":     50,
-		"critical": 1,
+		"critical": 10,
 	}
 
 	quorum := MakeRange(0, modes[os.Getenv("CHAOS_MONKEY_MODE")])

@@ -106,6 +106,8 @@ Increases the RAM consumption of the application
 export CHAOS_MONKEY_ENABLED=true
 export CHAOS_MONKEY_MODE=soft
 export CHAOS_MONKEY_LATENCY=true
+export CHAOS_MONKEY_LATENCY_MIN_TIME=5000
+export CHAOS_MONKEY_LATENCY_MAX_TIME=10000
 ```
 
 ## Environment Variables Configuration 
@@ -115,7 +117,8 @@ export CHAOS_MONKEY_LATENCY=true
 | CHAOS_MONKEY_ENABLED                      | true/false            | false     |
 | CHAOS_MONKEY_MODE                         | soft/hard/critical    | soft      |
 | CHAOS_MONKEY_LATENCY                      | true/false            | false     |
-| CHAOS_MONKEY_LATENCY_MAX_TIMEOUT          | miliseconds           | 1000      |
+| CHAOS_MONKEY_LATENCY_MIN_TIME       		| miliseconds           | max_time  |
+| CHAOS_MONKEY_LATENCY_MAX_TIME       		| miliseconds           | 1000      |
 | CHAOS_MONKEY_EXCEPTION                    | true/false            | false     |
 | CHAOS_MONKEY_EXCEPTION_HTTP_STATUS_CODE   | 5xx                   | 503       |
 | CHAOS_MONKEY_APP_KILLER                   | true/false            | false     |

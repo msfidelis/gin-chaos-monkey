@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -55,7 +56,7 @@ func IsGonnaAssault() bool {
 		"":         100,
 		"soft":     100,
 		"hard":     50,
-		"critical": 10,
+		"critical": 1,
 	}
 
 	quorum := MakeRange(0, modes[os.Getenv("CHAOS_MONKEY_MODE")])
@@ -100,9 +101,38 @@ func MakeRange(min, max int) []int {
 	return a
 }
 
+func RandInt64(min, max int64) int64 {
+	if min >= max || min == 0 || max == 0 {
+		return max
+	}
+	return rand.Int63n(max-min) + min
+}
+
 func latencyAssault(ctx *gin.Context) {
 	fmt.Println("[CHAOS MONKEY] - Latency Assault")
-	time.Sleep(time.Second)
+
+	min_time := os.Getenv("CHAOS_MONKEY_LATENCY_MIN_TIME")
+	max_time := os.Getenv("CHAOS_MONKEY_LATENCY_MAX_TIME")
+
+	if max_time == "" {
+		max_time = "1000"
+	}
+	max_time_int, err := strconv.ParseInt(max_time, 10, 64)
+	if err != nil {
+		panic(err)
+	}
+	if min_time == "" {
+		min_time = max_time
+	}
+	min_time_int, err := strconv.ParseInt(min_time, 10, 64)
+	if err != nil {
+		panic(err)
+	}
+
+	latency_to_inject := RandInt64(min_time_int, max_time_int)
+	fmt.Printf("[CHAOS MONKEY] Latency Injected: %v ms\n", latency_to_inject)
+	time.Sleep(time.Duration(int64(time.Millisecond) * latency_to_inject))
+
 	ctx.Next()
 }
 

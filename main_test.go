@@ -134,3 +134,19 @@ func TestIsGonnaAssaultIsBool(t *testing.T) {
 		t.Errorf("Expected value is type bool %v, got %v", 1, assault)
 	}
 }
+
+func TestRandInt64EqualValues(t *testing.T) {
+	result := chaos.RandInt64(1000, 1000)
+
+	if result != 1000 {
+		t.Errorf("Expected value is 1000 got %v", result)
+	}
+}
+
+func TestRandInt64MinValue(t *testing.T) {
+	result := chaos.RandInt64(400, 1000)
+
+	if result < 400 {
+		t.Errorf("Expected value lower than 400, but got %v", result)
+	}
+}

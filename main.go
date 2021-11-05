@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"runtime"
 
 	"github.com/gin-gonic/gin"
 )
@@ -38,6 +39,7 @@ func GetAssaltsEnabled() []string {
 		"CHAOS_MONKEY_EXCEPTION",
 		"CHAOS_MONKEY_APP_KILLER",
 		"CHAOS_MONKEY_MEMORY",
+		"CHAOS_MONKEY_CPU",
 	}
 
 	for i := 0; i < len(assalt_available); i++ {
@@ -88,6 +90,8 @@ func assaultAction(assault string, ctx *gin.Context) {
 	case "CHAOS_MONKEY_MEMORY":
 		memoryAssault(ctx)
 		break
+	case "CHAOS_MONKEY_CPU":
+		cpuAssault(ctx)
 	default:
 		latencyAssault(ctx)
 		break
@@ -145,6 +149,29 @@ func exceptionAssault(ctx *gin.Context) {
 
 func appKillerAssault(ctx *gin.Context) {
 	panic("[CHAOS MONKEY] - App Killer Assault")
+
+	n := runtime.NumCPU()
+	runtime.GOMAXPROCS(n)
+
+	quit := make(chan bool)
+
+	for i := 0; i < n; i++ {
+		go func() {
+			for {
+				select {
+				case <-quit:
+					return
+				default:
+				}
+			}
+		}()
+	}
+
+	time.Sleep(2 * time.Second)
+	for i := 0; i < n; i++ {
+		quit <- true
+	}
+
 }
 
 func memoryAssault(ctx *gin.Context) {
@@ -156,4 +183,8 @@ func memoryAssault(ctx *gin.Context) {
 		s = append(s, sum)
 	}
 	ctx.Next()
+}
+
+func cpuAssault(ctx *gin.Context) {
+	fmt.Println("[CHAOS MONKEY] - CPU Assault")
 }

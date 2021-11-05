@@ -96,7 +96,9 @@ This assault randomly inject an `panic` exception on application runtime
 
 Increases the RAM consumption of the application
 
+### CPU ASSAULT 
 
+Increases the CPU consumption of the application
 
 # CONFIGURATION 
 
@@ -123,7 +125,7 @@ export CHAOS_MONKEY_LATENCY_MAX_TIME=10000
 | CHAOS_MONKEY_EXCEPTION_HTTP_STATUS_CODE   | 5xx                   	| 503       |
 | CHAOS_MONKEY_APP_KILLER                   | true/false            	| false     |
 | CHAOS_MONKEY_MEMORY                       | true/false            	| false     |
-
+| CHAOS_MONKEY_CPU                       	| true/false            	| false     |
 
 ## Development 
 

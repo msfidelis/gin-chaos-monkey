@@ -115,14 +115,31 @@ func TestAssaultsEnabledsWithOnlyMemory(t *testing.T) {
 	}
 }
 
+func TestAssaultsEnabledsWithOnlyCPU(t *testing.T) {
+	os.Setenv("CHAOS_MONKEY_LATENCY", "false")
+	os.Setenv("CHAOS_MONKEY_EXCEPTION", "false")
+	os.Setenv("CHAOS_MONKEY_APP_KILLER", "false")
+	os.Setenv("CHAOS_MONKEY_MEMORY", "false")
+	os.Setenv("CHAOS_MONKEY_CPU", "true")
+
+	assaults := chaos.GetAssaltsEnabled()
+	if len(assaults) != 1 {
+		t.Errorf("Expected %v, got %v", 1, len(assaults))
+	}
+	if assaults[0] != "CHAOS_MONKEY_CPU" {
+		t.Errorf("Expected %v, got %v", "CHAOS_MONKEY_CPU", assaults[0])
+	}
+}
+
 func TestAssaultsEnabledsWithAllEnabled(t *testing.T) {
 	os.Setenv("CHAOS_MONKEY_LATENCY", "true")
 	os.Setenv("CHAOS_MONKEY_EXCEPTION", "true")
 	os.Setenv("CHAOS_MONKEY_APP_KILLER", "true")
 	os.Setenv("CHAOS_MONKEY_MEMORY", "true")
+	os.Setenv("CHAOS_MONKEY_CPU", "true")
 
 	assaults := chaos.GetAssaltsEnabled()
-	if len(assaults) != 4 {
+	if len(assaults) != 5 {
 		t.Errorf("Expected %v, got %v", 1, len(assaults))
 	}
 }

@@ -112,17 +112,17 @@ export CHAOS_MONKEY_LATENCY_MAX_TIME=10000
 
 ## Environment Variables Configuration 
 
-| VARIABLE                                  | OPTIONS               | DEFAULT   | 
-| ----------------------------------------- | ------------------    | --------- |
-| CHAOS_MONKEY_ENABLED                      | true/false            | false     |
-| CHAOS_MONKEY_MODE                         | soft/hard/critical    | soft      |
-| CHAOS_MONKEY_LATENCY                      | true/false            | false     |
-| CHAOS_MONKEY_LATENCY_MIN_TIME       		| miliseconds           | max_time  |
-| CHAOS_MONKEY_LATENCY_MAX_TIME       		| miliseconds           | 1000      |
-| CHAOS_MONKEY_EXCEPTION                    | true/false            | false     |
-| CHAOS_MONKEY_EXCEPTION_HTTP_STATUS_CODE   | 5xx                   | 503       |
-| CHAOS_MONKEY_APP_KILLER                   | true/false            | false     |
-| CHAOS_MONKEY_MEMORY                       | true/false            | false     |
+| VARIABLE                                  | OPTIONS               	| DEFAULT   | 
+| ----------------------------------------- | --------------------------| --------- |
+| CHAOS_MONKEY_ENABLED                      | true/false            	| false     |
+| CHAOS_MONKEY_MODE                         | soft/hard/critical/hell	| soft      |
+| CHAOS_MONKEY_LATENCY                      | true/false            	| false     |
+| CHAOS_MONKEY_LATENCY_MIN_TIME       		| miliseconds           	| max_time  |
+| CHAOS_MONKEY_LATENCY_MAX_TIME       		| miliseconds           	| 1000      |
+| CHAOS_MONKEY_EXCEPTION                    | true/false            	| false     |
+| CHAOS_MONKEY_EXCEPTION_HTTP_STATUS_CODE   | 5xx                   	| 503       |
+| CHAOS_MONKEY_APP_KILLER                   | true/false            	| false     |
+| CHAOS_MONKEY_MEMORY                       | true/false            	| false     |
 
 
 ## Development 

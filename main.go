@@ -51,12 +51,13 @@ func GetAssaltsEnabled() []string {
 }
 
 func IsGonnaAssault() bool {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(rand.Int63n(10000))
 	modes := map[string]int{
 		"":         100,
 		"soft":     100,
 		"hard":     50,
 		"critical": 10,
+		"hell":		3,
 	}
 
 	quorum := MakeRange(0, modes[os.Getenv("CHAOS_MONKEY_MODE")])
@@ -69,7 +70,7 @@ func IsGonnaAssault() bool {
 }
 
 func getAssaultType(assaults []string) string {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(rand.Int63n(10000))
 	return assaults[rand.Intn(len(assaults))]
 }
 
